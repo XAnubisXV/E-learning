@@ -33,7 +33,8 @@ if "messages" not in st.session_state:
 # Initialisiere das Basis-LLM
 if "base_llm" not in st.session_state:
     st.session_state.base_llm = ChatOpenAI(
-        api_key=os.getenv("OPENROUTER_API_KEY"),
+        #api_key=os.getenv("OPENROUTER_API_KEY"),
+        api_key=st.secrets["OPENAI_API_KEY"],
         base_url="https://openrouter.ai/api/v1",
         model=MODEL_NAME,
         temperature=0.0,
