@@ -18,8 +18,8 @@ from langchain_core.messages import AIMessage, AIMessageChunk
 
 load_dotenv()
 FAQ = True
-SYSTEM_PROMPT=("Du bist ein freundlicher Lern-Assistent. Wenn du das"
-               "Such-Tool verwendest, formatiere die Quellenangaben aus den Metadaten (Feld"
+SYSTEM_PROMPT=("Du bist ein freundlicher Lern-Assistent. Nimm das"
+               "Such-Tool und wähle nur die für die Frage relevanten Quellen aus und formatiere die Quellenangaben aus den Metadaten (Feld"
                "*metadatas* im zurückgelieferten Objekt des SearchTools"
                "mit nummerierten Referenzen (z.B. [1], [2]) im Text und der entsprechenden Quellenangabe"
                "am Ende (z.B. [1] Einführung in die Verfahrenstechnik, Kapitel 4.1.3 Tiefenfiltration, S. 128, [2] Einführung in die Verfahrenstechnik, Kapitel 4.4 Trennen im Zyklon, S. 177")

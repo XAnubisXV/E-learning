@@ -4,6 +4,8 @@ from langchain_core.tools import BaseTool
 from pydantic import BaseModel, Field, Extra
 from chromadb import Collection
 
+from process_results import process_results
+
 
 # Anfrage, die Nutzende stellen
 class SearchToolInput(BaseModel):
@@ -36,9 +38,10 @@ class SearchTool(BaseTool):
         try:
             results = self.collection.query(
                 query_texts=[query],
-                n_results=5,
+                n_results=15,
             )
-            print(results)
-            return results
+            #print(results)
+            return process_results(results)
         except Exception as e:
+            print(e)
             return f"Error querying items: {str(e)}"

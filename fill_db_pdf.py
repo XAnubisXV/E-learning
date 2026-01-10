@@ -9,14 +9,14 @@ load_dotenv()
 documents = {
      "doc1" : {
          "title" : "Einführung in die Verfahrenstechnik",
-         "path" : "sources/ZOGG-kurz.pdf"
+         "path" : "sources/ZOGG-noch-kürzer.pdf"
      }
  }
 # # PDF laden
 pages = []
 for key, doc in documents.items():
      reader = PdfReader(doc["path"])
-     for page_number, page in enumerate(reader.pages, start=85):
+     for page_number, page in enumerate(reader.pages, start=95):
          text = page.extract_text()
          if text:
              pages.append({
@@ -30,7 +30,7 @@ print(f"Loaded PDF with {len(pages)} pages")
 # Text in kleinere Bestandteile (Chunks) aufteilen
 text_splitter = RecursiveCharacterTextSplitter(
      chunk_size=800,
-     chunk_overlap=200,
+     chunk_overlap=100,
  )
 #
 # # Vektordatenbank einrichten und Kollektion erstellen
