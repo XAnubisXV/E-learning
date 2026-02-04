@@ -57,13 +57,18 @@
       font-size: 1.5rem;
     }
 
-    .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    /* Style für die NICHT klickbaren Elemente */
+    .nav-pills .nav-link.active.static-badge {
       background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
       border-radius: 30px;
       box-shadow: 0 4px 15px rgba(14, 165, 233, 0.3);
+      color: white;
+      cursor: default; /* Zeigt den normalen Mauszeiger, keine Hand */
     }
+
     .nav-link { font-weight: 600; color: #64748b; padding: 0.5rem 1.2rem;}
-    .nav-link:hover:not(.active) { color: var(--primary-color); }
+    /* Nur Links hovern, die keine statischen Badges sind */
+    .nav-link:not(.static-badge):hover { color: var(--primary-color); }
 
     /* Hauptinhalt & Titel */
     .page-title-section {
@@ -184,13 +189,17 @@
 
   <header class="fixed-top navbar-premium">
     <div class="container d-flex flex-wrap justify-content-center align-items-center">
-      <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 me-lg-auto text-decoration-none">
+
+      <div class="d-flex align-items-center mb-2 mb-lg-0 me-lg-auto text-decoration-none" style="cursor: default;">
         <i class="bi bi-robot fs-3 me-2" style="color: var(--primary-color)"></i>
         <span class="brand-logo brand-font">Arbeiten mit KI</span>
-      </a>
+      </div>
 
       <ul class="nav nav-pills">
-        <li class="nav-item m-1"><a href="/" class="nav-link active">Kursübersicht</a></li>
+        <li class="nav-item m-1">
+          <span class="nav-link active static-badge">Kursübersicht</span>
+        </li>
+
         <li class="nav-item m-1"><a href="https://www.hs-merseburg.de/studium/studiengaenge/informationsdesign-und-medienmanagement/" target="_blank" class="nav-link">Über uns</a></li>
         <li class="nav-item m-1"><a href="https://www.hs-merseburg.de/hochschule/einrichtungen/it-servicezentrum/it-support-und-beratung/" target="_blank" class="nav-link">Hilfe & FAQ</a></li>
       </ul>
