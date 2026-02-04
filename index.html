@@ -1,112 +1,315 @@
 <!DOCTYPE html>
-<html lang="de" class="h5p-iframe">
+<html lang="de">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <title>Kurs Barrierefreiheit</title>
+  <title>Kurs: Arbeiten mit KI</title>
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link rel="stylesheet" href="static/style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    /* --- PREMIUM CSS STYLING --- */
+
+    :root {
+      /* Farbpalette definieren */
+      --primary-color: #0ea5e9; /* Modernes Helles Blau */
+      --secondary-color: #6366f1; /* Indigo Akzent */
+      --dark-bg: #1e293b; /* Dunkler Footer */
+      --light-bg: #f8fafc; /* Sehr heller Hintergrund */
+      --card-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.05), 0 5px 15px -5px rgba(0, 0, 0, 0.03);
+      --hover-shadow: 0 20px 40px -5px rgba(0, 0, 0, 0.1), 0 10px 20px -5px rgba(0, 0, 0, 0.04);
+    }
+
+    body {
+      background: linear-gradient(to bottom right, var(--light-bg), #eef2ff);
+      font-family: 'Open Sans', sans-serif;
+      color: #334155;
+      padding-top: 90px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    h1, h2, h3, .brand-font {
+      font-family: 'Montserrat', sans-serif;
+      letter-spacing: -0.5px;
+    }
+
+    /* Sticky Glassmorphism Header */
+    .navbar-premium {
+      background-color: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px) saturate(110%);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+    }
+
+    .brand-logo {
+      background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 800;
+      font-size: 1.5rem;
+    }
+
+    .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+      background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+      border-radius: 30px;
+      box-shadow: 0 4px 15px rgba(14, 165, 233, 0.3);
+    }
+    .nav-link { font-weight: 600; color: #64748b; padding: 0.5rem 1.2rem;}
+    .nav-link:hover:not(.active) { color: var(--primary-color); }
+
+    /* Hauptinhalt & Titel */
+    .page-title-section {
+      padding: 40px 0 60px;
+      text-align: center;
+    }
+    .main-title {
+      font-weight: 800;
+      color: #0f172a;
+      margin-bottom: 15px;
+    }
+
+    /* Modul Karten Design */
+    .module-card {
+      border: none;
+      border-radius: 24px;
+      background: white;
+      box-shadow: var(--card-shadow);
+      overflow: hidden;
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      height: 100%;
+      border-top: 4px solid transparent;
+    }
+
+    .module-card:hover {
+      transform: translateY(-8px) scale(1.01);
+      box-shadow: var(--hover-shadow);
+      border-top-color: var(--primary-color);
+    }
+
+    .module-header {
+      padding: 25px 30px;
+      background: #fff;
+      border-bottom: 1px solid #f1f5f9;
+      display: flex;
+      align-items: center;
+    }
+
+    .module-number {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: white;
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin-right: 15px;
+      box-shadow: 0 4px 10px rgba(14, 165, 233, 0.3);
+    }
+
+    .module-title-text {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: #1e293b;
+      margin: 0;
+    }
+
+    .iframe-wrapper {
+        background-color: #fafafa;
+        border-radius: 0 0 24px 24px;
+    }
+
+    /* Chatbot */
+    .chatbot-float {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 1050;
+      cursor: pointer;
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .chatbot-float:hover { transform: scale(1.1) rotate(-5deg); }
+    .chatbot-button {
+      width: 70px; height: 70px; border-radius: 50%;
+      box-shadow: 0 8px 30px rgba(14, 165, 233, 0.4);
+      border: 3px solid white;
+    }
+
+    #toggle { display: none; }
+    #iframe-container {
+      position: fixed; bottom: 115px; right: 35px;
+      width: 380px; height: 550px;
+      background: white;
+      border-radius: 24px;
+      box-shadow: var(--hover-shadow);
+      z-index: 1049;
+      display: none;
+      overflow: hidden;
+      opacity: 0;
+    }
+    #toggle:checked ~ #iframe-container {
+      display: block;
+      animation: slideUpFade 0.4s forwards cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+    @keyframes slideUpFade {
+      from { opacity: 0; transform: translateY(50px) scale(0.9); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    /* Dark Footer */
+    footer {
+      background-color: var(--dark-bg) !important;
+      color: #94a3b8 !important;
+      margin-top: auto;
+      padding: 3rem 0;
+    }
+    footer a { color: #cbd5e1; text-decoration: none; transition: color 0.2s;}
+    footer a:hover { color: var(--primary-color); }
+    footer .btn-outline-light { border-color: #475569; color: #cbd5e1; }
+    footer .btn-outline-light:hover { background: var(--primary-color); border-color: var(--primary-color); color: white;}
+  </style>
 </head>
 
 <body>
 
-  <!-- HEADER -->
-  <header class="d-flex flex-wrap justify-content-center py-3 bg-light">
-    <div class="container">
-      <ul class="nav nav-pills justify-content-end">
-        <li class="nav-item m-1"><a href="/" class="nav-link active">Home</a></li>
-        <li class="nav-item m-1"><a href="/about" class="nav-link active">Über uns</a></li>
-        <li class="nav-item m-1"><a href="/faq" class="nav-link active">FAQs</a></li>
+  <header class="fixed-top navbar-premium">
+    <div class="container d-flex flex-wrap justify-content-center align-items-center">
+      <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 me-lg-auto text-decoration-none">
+        <i class="bi bi-robot fs-3 me-2" style="color: var(--primary-color)"></i>
+        <span class="brand-logo brand-font">Arbeiten mit KI</span>
+      </a>
+
+      <ul class="nav nav-pills">
+        <li class="nav-item m-1"><a href="/" class="nav-link active">Kursübersicht</a></li>
+        <li class="nav-item m-1"><a href="/about" class="nav-link">Über uns</a></li>
+        <li class="nav-item m-1"><a href="/faq" class="nav-link">Hilfe & FAQ</a></li>
       </ul>
     </div>
   </header>
 
-  <!-- CONTENT -->
   <main class="container">
 
-    <!-- Lumi / H5P Inhalt - Modul 1: Einleitung -->
-    <iframe
-      src="https://app.lumi.education/api/v1/run/iFiuLg/embed"
-      width="1088"
-      height="720"
-      frameborder="0"
-      allowfullscreen="allowfullscreen">
-    </iframe>
+    <section class="page-title-section">
+      <h1 class="display-5 main-title">Kurs: Arbeiten mit KI</h1>
+      <p class="lead text-muted" style="max-width: 700px; margin: 0 auto;">
+        Lernen Sie, KI-Technologien effektiv und sicher zu nutzen.
+      </p>
+    </section>
 
-    <!-- Lumi / H5P Inhalt - Modul 2: Prompting mit KI-Sprachmodellen -->
-    <iframe
-      src="https://app.lumi.education/api/v1/run/Pu58Ko/embed"
-      width="1088"
-      height="720"
-      frameborder="0"
-      allowfullscreen="allowfullscreen">
-    </iframe>
+    <div class="row g-4 mb-5">
 
-    <!-- Lumi / H5P Inhalt - Modul 3: Datenschutz -->
-    <iframe
-      src="https://app.lumi.education/api/v1/run/wSaecY/embed"
-      width="1088"
-      height="720"
-      frameborder="0"
-      allowfullscreen="allowfullscreen">
-    </iframe>
+      <div class="col-lg-6">
+        <div class="module-card">
+          <div class="module-header">
+            <div class="module-number">1</div>
+            <h3 class="module-title-text">Einleitung in die Thematik</h3>
+          </div>
+          <div class="ratio ratio-16x9 iframe-wrapper">
+            <iframe src="https://app.lumi.education/api/v1/run/iFiuLg/embed" allowfullscreen="allowfullscreen"></iframe>
+          </div>
+        </div>
+      </div>
 
-    <!-- Lumi / H5P Inhalt - Modul 4: Das wichtigste zu Urheberrecht -->
-    <iframe
-      src="https://app.lumi.education/api/v1/run/YQNh_O/embed"
-      width="1088"
-      height="720"
-      frameborder="0"
-      allowfullscreen="allowfullscreen">
-    </iframe>
+      <div class="col-lg-6">
+        <div class="module-card">
+          <div class="module-header">
+            <div class="module-number">2</div>
+            <h3 class="module-title-text">Prompting mit KI-Modellen</h3>
+          </div>
+          <div class="ratio ratio-16x9 iframe-wrapper">
+            <iframe src="https://app.lumi.education/api/v1/run/Pu58Ko/embed" allowfullscreen="allowfullscreen"></iframe>
+          </div>
+        </div>
+      </div>
 
-    <!-- Lumi / H5P Inhalt - Modul 5: Test-Fragen zu den Lernmodulen -->
-    <iframe
-      src="https://app.lumi.education/api/v1/run/GGTVvp/embed"
-      width="1088"
-      height="720"
-      frameborder="0"
-      allowfullscreen="allowfullscreen">
-    </iframe>
+      <div class="col-lg-6">
+        <div class="module-card">
+          <div class="module-header">
+            <div class="module-number">3</div>
+            <h3 class="module-title-text"><i class="bi bi-shield-lock me-2 text-muted small"></i> Datenschutz Grundlagen</h3>
+          </div>
+          <div class="ratio ratio-16x9 iframe-wrapper">
+            <iframe src="https://app.lumi.education/api/v1/run/S6h0QA/embed" allowfullscreen="allowfullscreen"></iframe>
+          </div>
+        </div>
+      </div>
 
-    <script
-      src="https://app.lumi.education/api/v1/h5p/core/js/h5p-resizer.js"
-      charset="UTF-8">
-    </script>
+      <div class="col-lg-6">
+        <div class="module-card">
+          <div class="module-header">
+            <div class="module-number">4</div>
+            <h3 class="module-title-text"><i class="bi bi-pen me-2 text-muted small"></i> Wichtiges zum Urheberrecht</h3>
+          </div>
+          <div class="ratio ratio-16x9 iframe-wrapper">
+            <iframe src="https://app.lumi.education/api/v1/run/YQNh_O/embed" allowfullscreen="allowfullscreen"></iframe>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6 offset-lg-3">
+        <div class="module-card" style="border-top-color: var(--secondary-color);">
+          <div class="module-header">
+            <div class="module-number" style="background: var(--secondary-color)">5</div>
+            <h3 class="module-title-text">Abschluss-Testfragen</h3>
+            <span class="badge bg-success ms-auto">Prüfung</span>
+          </div>
+          <div class="ratio ratio-16x9 iframe-wrapper">
+            <iframe src="https://app.lumi.education/api/v1/run/GGTVvp/embed" allowfullscreen="allowfullscreen"></iframe>
+          </div>
+        </div>
+      </div>
+
+    </div> <script src="https://app.lumi.education/api/v1/h5p/core/js/h5p-resizer.js" charset="UTF-8"></script>
+
   </main>
 
-  <!-- CHATBOT -->
   <input type="checkbox" id="toggle" />
-
-  <label for="toggle" class="chatbot-float">
-    <img
-      src="http://podplatz.de/wp-content/uploads/2025/05/chatbot.png"
-      alt="Chatbot öffnen"
-      class="chatbot-button" />
+  <label for="toggle" class="chatbot-float" data-bs-toggle="tooltip" data-bs-placement="left" title="KI-Tutor starten">
+    <img src="http://podplatz.de/wp-content/uploads/2025/05/chatbot.png" alt="Chatbot" class="chatbot-button" />
   </label>
 
   <div id="iframe-container">
-    <iframe
-      src="https://e-learning-xujr2bz4awntkgpj3jhtii.streamlit.app?embed=true"
-      width="600"
-      height="400">
-    </iframe>
+    <div class="d-flex justify-content-between align-items-center p-3 bg-light border-bottom">
+        <span class="fw-bold brand-font text-primary">KI-Lernassistent</span>
+        <label for="toggle" style="cursor:pointer;"><i class="bi bi-x-lg text-muted"></i></label>
+    </div>
+    <iframe src="https://ki-schulung.streamlit.app/?embed=true" width="100%" height="490px" frameborder="0" style="border-radius: 0 0 24px 24px;"></iframe>
   </div>
 
-  <div class="b-example-divider"></div>
-
-  <!-- FOOTER -->
-  <footer class="text-body-secondary py-5 bg-light min-vh-100">
+  <footer>
     <div class="container">
-      <p class="float-end mb-1">
-        <a href="#">Zurück zum Anfang</a>
-      </p>
-      <p class="mb-1"><a href="/impress">Impressum</a></p>
-      <p class="mb-0"><a href="/privacy">Datenschutz</a></p>
+      <div class="row gy-4 align-items-center">
+        <div class="col-md-6 text-center text-md-start">
+          <a href="https://www.hs-merseburg.de" target="_blank" class="text-white text-decoration-none brand-font fs-4">
+            Hochschule Merseburg <i class="bi bi-box-arrow-up-right small ms-1" style="font-size: 0.7em;"></i>
+          </a>
+        </div>
+        <div class="col-md-6 text-center text-md-end">
+           <a href="/impress" class="me-4">Impressum</a>
+           <a href="/privacy" class="me-4">Datenschutz</a>
+           <a href="#" class="btn btn-outline-light btn-sm rounded-pill px-3">
+            <i class="bi bi-arrow-up-short"></i> Nach oben
+          </a>
+        </div>
+      </div>
     </div>
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+  </script>
 </body>
 </html>
