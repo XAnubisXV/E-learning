@@ -67,7 +67,9 @@
     }
 
     .nav-link { font-weight: 600; color: #64748b; padding: 0.5rem 1.2rem;}
-    /* Nur Links hovern, die keine statischen Badges sind */
+
+    /* Wenn du willst, dass sie beim Hovern auch NICHT mehr blau werden,
+       kannst du diesen Block löschen oder auskommentieren: */
     .nav-link:not(.static-badge):hover { color: var(--primary-color); }
 
     /* Hauptinhalt & Titel */
@@ -200,8 +202,10 @@
           <span class="nav-link active static-badge">Kursübersicht</span>
         </li>
 
-        <li class="nav-item m-1"><a href="https://www.hs-merseburg.de/studium/studiengaenge/informationsdesign-und-medienmanagement/" target="_blank" class="nav-link">Über uns</a></li>
-        <li class="nav-item m-1"><a href="https://www.hs-merseburg.de/hochschule/einrichtungen/it-servicezentrum/it-support-und-beratung/" target="_blank" class="nav-link">Hilfe & FAQ</a></li>
+        <li class="nav-item m-1">
+            <a href="#" class="nav-link" style="cursor: default;">Über uns</a> </li>
+        <li class="nav-item m-1">
+            <a href="#" class="nav-link" style="cursor: default;">Hilfe & FAQ</a> </li>
       </ul>
     </div>
   </header>
@@ -299,15 +303,11 @@
     <div class="container">
       <div class="row gy-4 align-items-center">
         <div class="col-md-6 text-center text-md-start">
-          <a href="https://www.hs-merseburg.de" target="_blank" class="text-white text-decoration-none brand-font fs-4">
+          <a href="#" class="text-white text-decoration-none brand-font fs-4" style="cursor: default;">
             Hochschule Merseburg <i class="bi bi-box-arrow-up-right small ms-1" style="font-size: 0.7em;"></i>
-          </a>
-        </div>
+          </a> </div>
         <div class="col-md-6 text-center text-md-end">
-           <a href="https://www.hs-merseburg.de/impressum/" target="_blank" class="me-4">Impressum</a>
-           <a href="https://www.hs-merseburg.de/datenschutz/" target="_blank" class="me-4">Datenschutz</a>
-
-           <a href="#" class="btn btn-outline-light btn-sm rounded-pill px-3">
+           <a href="#" class="me-4" style="cursor: default;">Impressum</a> <a href="#" class="me-4" style="cursor: default;">Datenschutz</a> <a href="#" class="btn btn-outline-light btn-sm rounded-pill px-3">
             <i class="bi bi-arrow-up-short"></i> Nach oben
           </a>
         </div>
